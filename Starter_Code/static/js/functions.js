@@ -4,7 +4,7 @@ const colors = ["#FFEDA0", "#FEB24C", "#FD8D3C", "#FC4E2A", "#E31A1C", "#BD0026"
 
 // Function to get color based on depth
 function getColor(depth) {
-    // This is an example. Update it according to your preferred color scheme.
+    //  Function to determine the color of the marker based on the depth of the earthquake
     return depth > 300 ? '#800026' :
         depth > 200 ? '#BD0026' :
             depth > 100 ? '#E31A1C' :
@@ -15,6 +15,7 @@ function getColor(depth) {
 }
 
 function getMarkers(data) {
+    // Create an array of the earthquake data
     let earthquakeArray = data.features.map(earthquake => ({
         coordinates: [earthquake.geometry.coordinates[1], earthquake.geometry.coordinates[0]],
         depth: earthquake.geometry.coordinates[2],

@@ -21,15 +21,20 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Fetch the JSON data, store and console.log into allData object
 d3.json(url).then(function (data) {
+    // Store and Console.log the data
     allData = data
     bbox = allData.bbox
     features = allData.features
     metadata = allData.metadata
 
-    getMarkers(data)
-    createLegend()
     console.log("allData", allData);
     console.log("bbox", bbox);
     console.log("features", features);
     console.log("metadata", metadata);
+
+    // Run function to getMarkers and createLegend
+    getMarkers(data)
+    createLegend()
+
+
 });
