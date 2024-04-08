@@ -1,3 +1,7 @@
+// Define colors and labels for the legend
+const labels = ["-10-10", "10-30", "30-50", "50-70", "70-90", "90+"];
+const colors = ["#FFEDA0", "#FEB24C", "#FD8D3C", "#FC4E2A", "#E31A1C", "#BD0026"];
+
 // Function to get color based on depth
 function getColor(depth) {
     // This is an example. Update it according to your preferred color scheme.
@@ -23,12 +27,12 @@ function getMarkers(data) {
     // Loop through the earthquakeArray and create one circle marker for each earthquake
     for (let i = 0; i < earthquakeArray.length; i++) {
         let earthquake = earthquakeArray[i];
-        let markerRadius = earthquake.magnitude * 8; // Adjust multiplier as necessary
+        let markerRadius = earthquake.magnitude * 6;
 
         L.circleMarker(earthquake.coordinates, {
             radius: markerRadius, // Use the magnitude to determine the radius
-            color: 'blue', // Example color, change as needed
-            fillColor: getColor(earthquake.depth), // Call a function to determine color based on depth
+            color: 'blue',
+            fillColor: getColor(earthquake.depth), // Use the depth to determine the color
             fillOpacity: 0.6,
             weight: 1
         })
@@ -39,5 +43,17 @@ function getMarkers(data) {
 }
 
 function createLegend() {
+    const legend = L.control({ position: 'bottomright' });
+    legend.onAdd = function (map) {
+        const div = L.DomUtil.create('div', 'info legend');
+        // Loop through our labels and colors to add items to the legend
+        labels.forEach((label, index) => {
+            div.innerHTML +=
+                '<i style="background:' + colors[index] + '"></i> ' +
+                label + '<br>';
+        });
+        return div;
+    };
 
+    legend.addTo(myMap);
 }

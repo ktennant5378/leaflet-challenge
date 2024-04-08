@@ -27,6 +27,7 @@ d3.json(url).then(function (data) {
     metadata = allData.metadata
 
     getMarkers(data)
+    createLegend()
     console.log("allData", allData);
     console.log("bbox", bbox);
     console.log("features", features);
